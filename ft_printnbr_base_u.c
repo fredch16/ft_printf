@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_printnbr_base_u.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcharbon <fcharbon@student.42london.c      +#+  +:+       +#+        */
+/*   By: fcharbon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 12:50:53 by fcharbon          #+#    #+#             */
-/*   Updated: 2023/12/05 17:30:10 by fcharbon         ###   ########.fr       */
+/*   Created: 2023/12/05 18:48:27 by fcharbon          #+#    #+#             */
+/*   Updated: 2023/12/05 18:58:09 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-int	ft_printstr(char *s)
+int	ft_printnbr_base_u(unsigned long n, int base, char *symbols)
 {
-	int	i;
-
-	i = 0;
-	while (*s)
-	{
-		ft_printchar(*s++);
-		i++;
-	}
-	return (i);
+	return (ft_printnbr_base(n, base, symbols));
 }
