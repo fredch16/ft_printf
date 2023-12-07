@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:52:03 by fcharbon          #+#    #+#             */
-/*   Updated: 2023/12/07 13:45:09 by fcharbon         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:05:04 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ int	ft_format(const	char *str, va_list ap)
 				"0123456789ABCDEF");
 	if (*str == '%')
 		i += ft_printchar('%');
+	if (*str == 'u')
+		i += ft_printnbr_base_u(va_arg(ap, unsigned int), 10,
+				"0123456789");
 	return (i);
-	// consider the %% case
 }
 
 int	ft_printf(const char *input, ...)
@@ -65,7 +67,7 @@ int	ft_printf(const char *input, ...)
 	{
 		if (*input == '%')
 		{
-			if (ft_strchr("cspdiuxX%", *(input + 1))) //add % case
+			if (ft_strchr("cspdiuxX%", *(input + 1)))
 			{
 				i += ft_format((input + 1), args);
 				input += 2;
@@ -73,20 +75,17 @@ int	ft_printf(const char *input, ...)
 		}
 		if (*input == '\0')
 			return (i);
-		i += ft_printchar(*input);
-		input++;
+		if (*input != '%')
+		{
+			i += ft_printchar(*input);
+			input++;
+		}
 	}
 	va_end(args);
 	return (i);
 }
 
-int	main()
-{
-	int	value = 10;
-	int	*pointer = &value;
-
-	//printf("wowcheck%d", 15);
-	//ft_printf("wowcheck%q", 15);
-	//return (printf("%%\n"));
-	return (ft_printf("%%\n"));
-}
+/*int	main()
+	printf("%d\n", printf(" NULL %s NULL ", NULL));
+	printf("%d\n", ft_printf(" NULL %s NULL ", NULL));
+}*/

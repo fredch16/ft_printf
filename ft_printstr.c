@@ -6,7 +6,7 @@
 /*   By: fcharbon <fcharbon@student.42london.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:50:53 by fcharbon          #+#    #+#             */
-/*   Updated: 2023/12/05 17:30:10 by fcharbon         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:54:07 by fcharbon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ int	ft_printstr(char *s)
 	int	i;
 
 	i = 0;
-	while (*s)
+	if (!s)
+	{
+		ft_printstr("(null)");
+		return (6);
+	}
+	while (s && *s)
 	{
 		ft_printchar(*s++);
 		i++;
